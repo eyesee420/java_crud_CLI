@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class App {
     static HashMap<String, user_model> employeeMap = new HashMap<>();
     static Scanner myObj = new Scanner(System.in);
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
        showMainMenu();
     }
@@ -30,22 +30,26 @@ public class App {
 
                 System.out.print("ENTER ID: ");
                 String id = myObj.nextLine();
-                
+               
+                if(employeeMap.containsKey(id)){
+                System.out.println("CANNOT ADD WITH THE SAME ID!  ");
+                }
+                else {
                 System.out.print("ENTER NAME: ");
                 String name = myObj.nextLine();
                 
                 System.out.print("ENTER POSITION: ");
                 String position = myObj.nextLine();
-                
                 user_model newUsers = new user_model(id, name, position);
                 employeeMap.put(id, newUsers);
-                
                 System.out.println("SUCCESSFULY REGISTERED");
+                }
+                
                 // After registering an employee, return to the main menu
                 showMainMenu();
                 break;
             case 2:
-                System.out.println("=========== REGISTERED EMPLOYEES ===========");
+                System.out.println("=========== REGISTERED EMPLOYEES "+ "("+employeeMap.size()+")" +"===========");
                 System.out.println("ID\tNAME\tPOSITION");
                 System.out.println("---------------------------------------------");
 
@@ -54,7 +58,7 @@ public class App {
                 }
                 System.out.println("=============================================");
                 
-                // After viewing registered employees, return to the main menu
+
                 showMainMenu();
                 break;
             case 3:
